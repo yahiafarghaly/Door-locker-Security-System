@@ -1,0 +1,1346 @@
+
+MC2.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000005a6  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000004  00800060  000005a6  0000063a  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000007  00800064  00800064  0000063e  2**0
+                  ALLOC
+  3 .stab         000006cc  00000000  00000000  00000640  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  4 .stabstr      00000085  00000000  00000000  00000d0c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_aranges 00000100  00000000  00000000  00000d98  2**3
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00000a9e  00000000  00000000  00000e98  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000441  00000000  00000000  00001936  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   000007c1  00000000  00000000  00001d77  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000248  00000000  00000000  00002538  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000003bc  00000000  00000000  00002780  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    000004a8  00000000  00000000  00002b3c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 56 02 	jmp	0x4ac	; 0x4ac <__vector_7>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e6 ea       	ldi	r30, 0xA6	; 166
+  68:	f5 e0       	ldi	r31, 0x05	; 5
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	a4 36       	cpi	r26, 0x64	; 100
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	10 e0       	ldi	r17, 0x00	; 0
+  78:	a4 e6       	ldi	r26, 0x64	; 100
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	ab 36       	cpi	r26, 0x6B	; 107
+  82:	b1 07       	cpc	r27, r17
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 03 01 	call	0x206	; 0x206 <main>
+  8a:	0c 94 d1 02 	jmp	0x5a2	; 0x5a2 <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <EEPROM_Init>:
+
+#include "External_EEPROM.h"
+
+void EEPROM_Init(void)
+{
+	TWI_Init(); // just initialize the TWI module inside the MC
+  92:	0e 94 d3 00 	call	0x1a6	; 0x1a6 <TWI_Init>
+}
+  96:	08 95       	ret
+
+00000098 <EEPROM_Write_Byte>:
+
+uint8 EEPROM_Write_Byte(uint16 u16addr, uint8 u8data)
+{
+  98:	1f 93       	push	r17
+  9a:	cf 93       	push	r28
+  9c:	df 93       	push	r29
+  9e:	ec 01       	movw	r28, r24
+  a0:	16 2f       	mov	r17, r22
+    TWI_Start();
+  a2:	0e 94 da 00 	call	0x1b4	; 0x1b4 <TWI_Start>
+    if (TWI_Get_Status() != TW_START)
+  a6:	0e 94 f8 00 	call	0x1f0	; 0x1f0 <TWI_Get_Status>
+  aa:	88 30       	cpi	r24, 0x08	; 8
+  ac:	09 f5       	brne	.+66     	; 0xf0 <EEPROM_Write_Byte+0x58>
+        return ERROR;
+		
+    //write the device address and so we need to get A8 A9 A10 address bits and R/W=0 (write)
+    TWI_Write((uint8)(0xA0 | ((u16addr & 0x0700)>>7)));
+  ae:	ce 01       	movw	r24, r28
+  b0:	80 70       	andi	r24, 0x00	; 0
+  b2:	97 70       	andi	r25, 0x07	; 7
+  b4:	88 0f       	add	r24, r24
+  b6:	89 2f       	mov	r24, r25
+  b8:	88 1f       	adc	r24, r24
+  ba:	99 0b       	sbc	r25, r25
+  bc:	91 95       	neg	r25
+  be:	80 6a       	ori	r24, 0xA0	; 160
+  c0:	0e 94 e3 00 	call	0x1c6	; 0x1c6 <TWI_Write>
+    if (TWI_Get_Status() != TW_MT_SLA_W_ACK)
+  c4:	0e 94 f8 00 	call	0x1f0	; 0x1f0 <TWI_Get_Status>
+  c8:	88 31       	cpi	r24, 0x18	; 24
+  ca:	a1 f4       	brne	.+40     	; 0xf4 <EEPROM_Write_Byte+0x5c>
+        return ERROR; 
+		 
+    //send the required location address
+    TWI_Write((uint8)(u16addr));
+  cc:	8c 2f       	mov	r24, r28
+  ce:	0e 94 e3 00 	call	0x1c6	; 0x1c6 <TWI_Write>
+    if (TWI_Get_Status() != TW_MT_DATA_ACK)
+  d2:	0e 94 f8 00 	call	0x1f0	; 0x1f0 <TWI_Get_Status>
+  d6:	88 32       	cpi	r24, 0x28	; 40
+  d8:	79 f4       	brne	.+30     	; 0xf8 <EEPROM_Write_Byte+0x60>
+        return ERROR;
+		
+    //write byte to eeprom
+    TWI_Write(u8data);
+  da:	81 2f       	mov	r24, r17
+  dc:	0e 94 e3 00 	call	0x1c6	; 0x1c6 <TWI_Write>
+    if (TWI_Get_Status() != TW_MT_DATA_ACK)
+  e0:	0e 94 f8 00 	call	0x1f0	; 0x1f0 <TWI_Get_Status>
+  e4:	88 32       	cpi	r24, 0x28	; 40
+  e6:	51 f4       	brne	.+20     	; 0xfc <EEPROM_Write_Byte+0x64>
+        return ERROR;
+		
+    TWI_Stop();
+  e8:	0e 94 e0 00 	call	0x1c0	; 0x1c0 <TWI_Stop>
+	
+    return SUCCESS;
+  ec:	81 e0       	ldi	r24, 0x01	; 1
+  ee:	07 c0       	rjmp	.+14     	; 0xfe <EEPROM_Write_Byte+0x66>
+
+uint8 EEPROM_Write_Byte(uint16 u16addr, uint8 u8data)
+{
+    TWI_Start();
+    if (TWI_Get_Status() != TW_START)
+        return ERROR;
+  f0:	80 e0       	ldi	r24, 0x00	; 0
+  f2:	05 c0       	rjmp	.+10     	; 0xfe <EEPROM_Write_Byte+0x66>
+		
+    //write the device address and so we need to get A8 A9 A10 address bits and R/W=0 (write)
+    TWI_Write((uint8)(0xA0 | ((u16addr & 0x0700)>>7)));
+    if (TWI_Get_Status() != TW_MT_SLA_W_ACK)
+        return ERROR; 
+  f4:	80 e0       	ldi	r24, 0x00	; 0
+  f6:	03 c0       	rjmp	.+6      	; 0xfe <EEPROM_Write_Byte+0x66>
+		 
+    //send the required location address
+    TWI_Write((uint8)(u16addr));
+    if (TWI_Get_Status() != TW_MT_DATA_ACK)
+        return ERROR;
+  f8:	80 e0       	ldi	r24, 0x00	; 0
+  fa:	01 c0       	rjmp	.+2      	; 0xfe <EEPROM_Write_Byte+0x66>
+		
+    //write byte to eeprom
+    TWI_Write(u8data);
+    if (TWI_Get_Status() != TW_MT_DATA_ACK)
+        return ERROR;
+  fc:	80 e0       	ldi	r24, 0x00	; 0
+		
+    TWI_Stop();
+	
+    return SUCCESS;
+}
+  fe:	df 91       	pop	r29
+ 100:	cf 91       	pop	r28
+ 102:	1f 91       	pop	r17
+ 104:	08 95       	ret
+
+00000106 <EEPROM_Read_Byte>:
+
+uint8 EEPROM_Read_Byte(uint16 u16addr, uint8 *u8data)
+{
+ 106:	ef 92       	push	r14
+ 108:	ff 92       	push	r15
+ 10a:	0f 93       	push	r16
+ 10c:	1f 93       	push	r17
+ 10e:	cf 93       	push	r28
+ 110:	df 93       	push	r29
+ 112:	8c 01       	movw	r16, r24
+ 114:	7b 01       	movw	r14, r22
+    TWI_Start();
+ 116:	0e 94 da 00 	call	0x1b4	; 0x1b4 <TWI_Start>
+    if (TWI_Get_Status() != TW_START)
+ 11a:	0e 94 f8 00 	call	0x1f0	; 0x1f0 <TWI_Get_Status>
+ 11e:	88 30       	cpi	r24, 0x08	; 8
+ 120:	81 f5       	brne	.+96     	; 0x182 <EEPROM_Read_Byte+0x7c>
+        return ERROR;
+		
+    //write the device address and so we need to get A8 A9 A10 address bits and R/W=0 (write)
+    TWI_Write((uint8)((0xA0) | ((u16addr & 0x0700)>>7)));
+ 122:	e8 01       	movw	r28, r16
+ 124:	cc 0f       	add	r28, r28
+ 126:	cd 2f       	mov	r28, r29
+ 128:	cc 1f       	adc	r28, r28
+ 12a:	dd 0b       	sbc	r29, r29
+ 12c:	d1 95       	neg	r29
+ 12e:	ce 70       	andi	r28, 0x0E	; 14
+ 130:	8c 2f       	mov	r24, r28
+ 132:	80 6a       	ori	r24, 0xA0	; 160
+ 134:	0e 94 e3 00 	call	0x1c6	; 0x1c6 <TWI_Write>
+    if (TWI_Get_Status() != TW_MT_SLA_W_ACK)
+ 138:	0e 94 f8 00 	call	0x1f0	; 0x1f0 <TWI_Get_Status>
+ 13c:	88 31       	cpi	r24, 0x18	; 24
+ 13e:	19 f5       	brne	.+70     	; 0x186 <EEPROM_Read_Byte+0x80>
+        return ERROR;
+		
+    //send the required location address
+    TWI_Write((uint8)(u16addr));
+ 140:	80 2f       	mov	r24, r16
+ 142:	0e 94 e3 00 	call	0x1c6	; 0x1c6 <TWI_Write>
+    if (TWI_Get_Status() != TW_MT_DATA_ACK)
+ 146:	0e 94 f8 00 	call	0x1f0	; 0x1f0 <TWI_Get_Status>
+ 14a:	88 32       	cpi	r24, 0x28	; 40
+ 14c:	f1 f4       	brne	.+60     	; 0x18a <EEPROM_Read_Byte+0x84>
+        return ERROR;
+		
+    //send a repeated start
+    TWI_Start();
+ 14e:	0e 94 da 00 	call	0x1b4	; 0x1b4 <TWI_Start>
+    if (TWI_Get_Status() != TW_REP_START)
+ 152:	0e 94 f8 00 	call	0x1f0	; 0x1f0 <TWI_Get_Status>
+ 156:	80 31       	cpi	r24, 0x10	; 16
+ 158:	d1 f4       	brne	.+52     	; 0x18e <EEPROM_Read_Byte+0x88>
+        return ERROR;
+		
+    //write the device address and so we need to get A8 A9 A10 address bits and R/W=1 (Read)
+    TWI_Write((uint8)((0xA0) | ((u16addr & 0x0700)>>7) | 1));
+ 15a:	8c 2f       	mov	r24, r28
+ 15c:	81 6a       	ori	r24, 0xA1	; 161
+ 15e:	0e 94 e3 00 	call	0x1c6	; 0x1c6 <TWI_Write>
+    if (TWI_Get_Status() != TW_MT_SLA_R_ACK)
+ 162:	0e 94 f8 00 	call	0x1f0	; 0x1f0 <TWI_Get_Status>
+ 166:	80 34       	cpi	r24, 0x40	; 64
+ 168:	a1 f4       	brne	.+40     	; 0x192 <EEPROM_Read_Byte+0x8c>
+        return ERROR;
+		
+    *u8data = TWI_Read_With_NACK();
+ 16a:	0e 94 f1 00 	call	0x1e2	; 0x1e2 <TWI_Read_With_NACK>
+ 16e:	f7 01       	movw	r30, r14
+ 170:	80 83       	st	Z, r24
+    if (TWI_Get_Status() != TW_MR_DATA_NACK)
+ 172:	0e 94 f8 00 	call	0x1f0	; 0x1f0 <TWI_Get_Status>
+ 176:	88 35       	cpi	r24, 0x58	; 88
+ 178:	71 f4       	brne	.+28     	; 0x196 <EEPROM_Read_Byte+0x90>
+        return ERROR;
+		
+    TWI_Stop();
+ 17a:	0e 94 e0 00 	call	0x1c0	; 0x1c0 <TWI_Stop>
+    return SUCCESS;
+ 17e:	81 e0       	ldi	r24, 0x01	; 1
+ 180:	0b c0       	rjmp	.+22     	; 0x198 <EEPROM_Read_Byte+0x92>
+
+uint8 EEPROM_Read_Byte(uint16 u16addr, uint8 *u8data)
+{
+    TWI_Start();
+    if (TWI_Get_Status() != TW_START)
+        return ERROR;
+ 182:	80 e0       	ldi	r24, 0x00	; 0
+ 184:	09 c0       	rjmp	.+18     	; 0x198 <EEPROM_Read_Byte+0x92>
+		
+    //write the device address and so we need to get A8 A9 A10 address bits and R/W=0 (write)
+    TWI_Write((uint8)((0xA0) | ((u16addr & 0x0700)>>7)));
+    if (TWI_Get_Status() != TW_MT_SLA_W_ACK)
+        return ERROR;
+ 186:	80 e0       	ldi	r24, 0x00	; 0
+ 188:	07 c0       	rjmp	.+14     	; 0x198 <EEPROM_Read_Byte+0x92>
+		
+    //send the required location address
+    TWI_Write((uint8)(u16addr));
+    if (TWI_Get_Status() != TW_MT_DATA_ACK)
+        return ERROR;
+ 18a:	80 e0       	ldi	r24, 0x00	; 0
+ 18c:	05 c0       	rjmp	.+10     	; 0x198 <EEPROM_Read_Byte+0x92>
+		
+    //send a repeated start
+    TWI_Start();
+    if (TWI_Get_Status() != TW_REP_START)
+        return ERROR;
+ 18e:	80 e0       	ldi	r24, 0x00	; 0
+ 190:	03 c0       	rjmp	.+6      	; 0x198 <EEPROM_Read_Byte+0x92>
+		
+    //write the device address and so we need to get A8 A9 A10 address bits and R/W=1 (Read)
+    TWI_Write((uint8)((0xA0) | ((u16addr & 0x0700)>>7) | 1));
+    if (TWI_Get_Status() != TW_MT_SLA_R_ACK)
+        return ERROR;
+ 192:	80 e0       	ldi	r24, 0x00	; 0
+ 194:	01 c0       	rjmp	.+2      	; 0x198 <EEPROM_Read_Byte+0x92>
+		
+    *u8data = TWI_Read_With_NACK();
+    if (TWI_Get_Status() != TW_MR_DATA_NACK)
+        return ERROR;
+ 196:	80 e0       	ldi	r24, 0x00	; 0
+		
+    TWI_Stop();
+    return SUCCESS;
+}
+ 198:	df 91       	pop	r29
+ 19a:	cf 91       	pop	r28
+ 19c:	1f 91       	pop	r17
+ 19e:	0f 91       	pop	r16
+ 1a0:	ff 90       	pop	r15
+ 1a2:	ef 90       	pop	r14
+ 1a4:	08 95       	ret
+
+000001a6 <TWI_Init>:
+#include "i2c.h"
+
+void TWI_Init(void)
+{
+    /* Bit Rate: 400.000 kbps using zero pre-scaler TWPS=00 and F_CPU=8Mhz */
+    TWBR = 0x02;
+ 1a6:	82 e0       	ldi	r24, 0x02	; 2
+ 1a8:	80 b9       	out	0x00, r24	; 0
+	TWSR = 0x00;
+ 1aa:	11 b8       	out	0x01, r1	; 1
+	
+    /* Two Wire Bus address my address if any master device want to call me: 0x1 (used in case this MC is a slave device)
+       General Call Recognition: Off */
+    TWAR = 0b00000010; // my address = 0x01 :) 
+ 1ac:	82 b9       	out	0x02, r24	; 2
+	
+    TWCR = (1<<TWEN); /* enable TWI */
+ 1ae:	84 e0       	ldi	r24, 0x04	; 4
+ 1b0:	86 bf       	out	0x36, r24	; 54
+}
+ 1b2:	08 95       	ret
+
+000001b4 <TWI_Start>:
+    /* 
+	 * Clear the TWINT flag before sending the start bit TWINT=1
+	 * send the start bit by TWSTA=1
+	 * Enable TWI Module TWEN=1 
+	 */
+    TWCR = (1 << TWINT) | (1 << TWSTA) | (1 << TWEN);
+ 1b4:	84 ea       	ldi	r24, 0xA4	; 164
+ 1b6:	86 bf       	out	0x36, r24	; 54
+    
+    /* Wait for TWINT flag set in TWCR Register (start bit is send successfully) */
+    while(BIT_IS_CLEAR(TWCR,TWINT));
+ 1b8:	06 b6       	in	r0, 0x36	; 54
+ 1ba:	07 fe       	sbrs	r0, 7
+ 1bc:	fd cf       	rjmp	.-6      	; 0x1b8 <TWI_Start+0x4>
+}
+ 1be:	08 95       	ret
+
+000001c0 <TWI_Stop>:
+    /* 
+	 * Clear the TWINT flag before sending the stop bit TWINT=1
+	 * send the stop bit by TWSTO=1
+	 * Enable TWI Module TWEN=1 
+	 */
+    TWCR = (1 << TWINT) | (1 << TWSTO) | (1 << TWEN);
+ 1c0:	84 e9       	ldi	r24, 0x94	; 148
+ 1c2:	86 bf       	out	0x36, r24	; 54
+}
+ 1c4:	08 95       	ret
+
+000001c6 <TWI_Write>:
+
+void TWI_Write(uint8 data)
+{
+    /* Put data On TWI data Register */
+    TWDR = data;
+ 1c6:	83 b9       	out	0x03, r24	; 3
+    /* 
+	 * Clear the TWINT flag before sending the data TWINT=1
+	 * Enable TWI Module TWEN=1 
+	 */ 
+    TWCR = (1 << TWINT) | (1 << TWEN);
+ 1c8:	84 e8       	ldi	r24, 0x84	; 132
+ 1ca:	86 bf       	out	0x36, r24	; 54
+    /* Wait for TWINT flag set in TWCR Register(data is send successfully) */
+    while(BIT_IS_CLEAR(TWCR,TWINT));
+ 1cc:	06 b6       	in	r0, 0x36	; 54
+ 1ce:	07 fe       	sbrs	r0, 7
+ 1d0:	fd cf       	rjmp	.-6      	; 0x1cc <TWI_Write+0x6>
+}
+ 1d2:	08 95       	ret
+
+000001d4 <TWI_Read_With_ACK>:
+	/* 
+	 * Clear the TWINT flag before reading the data TWINT=1
+	 * Enable sending ACK after reading or receiving data TWEA=1
+	 * Enable TWI Module TWEN=1 
+	 */ 
+    TWCR = (1 << TWINT) | (1 << TWEN) | (1 << TWEA);
+ 1d4:	84 ec       	ldi	r24, 0xC4	; 196
+ 1d6:	86 bf       	out	0x36, r24	; 54
+    /* Wait for TWINT flag set in TWCR Register (data received successfully) */
+    while(BIT_IS_CLEAR(TWCR,TWINT));
+ 1d8:	06 b6       	in	r0, 0x36	; 54
+ 1da:	07 fe       	sbrs	r0, 7
+ 1dc:	fd cf       	rjmp	.-6      	; 0x1d8 <TWI_Read_With_ACK+0x4>
+    /* Read Data */
+    return TWDR;
+ 1de:	83 b1       	in	r24, 0x03	; 3
+}
+ 1e0:	08 95       	ret
+
+000001e2 <TWI_Read_With_NACK>:
+{
+	/* 
+	 * Clear the TWINT flag before reading the data TWINT=1
+	 * Enable TWI Module TWEN=1 
+	 */
+    TWCR = (1 << TWINT) | (1 << TWEN);
+ 1e2:	84 e8       	ldi	r24, 0x84	; 132
+ 1e4:	86 bf       	out	0x36, r24	; 54
+    /* Wait for TWINT flag set in TWCR Register (data received successfully) */
+    while(BIT_IS_CLEAR(TWCR,TWINT));
+ 1e6:	06 b6       	in	r0, 0x36	; 54
+ 1e8:	07 fe       	sbrs	r0, 7
+ 1ea:	fd cf       	rjmp	.-6      	; 0x1e6 <TWI_Read_With_NACK+0x4>
+    /* Read Data */
+    return TWDR;
+ 1ec:	83 b1       	in	r24, 0x03	; 3
+}
+ 1ee:	08 95       	ret
+
+000001f0 <TWI_Get_Status>:
+
+uint8 TWI_Get_Status(void)
+{
+    unsigned char status;
+    /* masking to eliminate first 3 bits and get the last 5 bits (status bits) */
+    status = TWSR & 0xF8;
+ 1f0:	81 b1       	in	r24, 0x01	; 1
+    return status;
+}
+ 1f2:	88 7f       	andi	r24, 0xF8	; 248
+ 1f4:	08 95       	ret
+
+000001f6 <TWI_EnableInterrupt>:
+
+void TWI_EnableInterrupt(void)
+{
+	 TWCR = (1<<TWEN)|(1<<TWIE);
+ 1f6:	85 e0       	ldi	r24, 0x05	; 5
+ 1f8:	86 bf       	out	0x36, r24	; 54
+	 sei();
+ 1fa:	78 94       	sei
+}
+ 1fc:	08 95       	ret
+
+000001fe <TWI_DisableInterrupt>:
+void TWI_DisableInterrupt(void)
+{
+	TWCR &= ~(1<<TWIE);
+ 1fe:	86 b7       	in	r24, 0x36	; 54
+ 200:	8e 7f       	andi	r24, 0xFE	; 254
+ 202:	86 bf       	out	0x36, r24	; 54
+}
+ 204:	08 95       	ret
+
+00000206 <main>:
+uint16 g_PasswardAddress=0x13f;
+uint16 g_FisrtTimeLaunchAddress=0x3ff;
+uint8 g_Password[5];
+
+int main(void)
+{
+ 206:	cf 93       	push	r28
+ 208:	df 93       	push	r29
+ 20a:	00 d0       	rcall	.+0      	; 0x20c <main+0x6>
+ 20c:	00 d0       	rcall	.+0      	; 0x20e <main+0x8>
+ 20e:	0f 92       	push	r0
+ 210:	cd b7       	in	r28, 0x3d	; 61
+ 212:	de b7       	in	r29, 0x3e	; 62
+
+/*This is used to Set your peripherals initializations functions */
+inline void InitPeripherals(void) 
+{
+	/*Don't Forget to include the Peripherals header files above*/
+	UART_init();
+ 214:	0e 94 8a 02 	call	0x514	; 0x514 <UART_init>
+	EEPROM_Init();
+ 218:	0e 94 49 00 	call	0x92	; 0x92 <EEPROM_Init>
+}
+
+/*This is used to Set Ports initializations*/
+inline void InitPorts(void)
+{
+	SET_BIT(DDRD,PD5);
+ 21c:	8d 9a       	sbi	0x11, 5	; 17
+	SET_BIT(DDRD,PD6);
+ 21e:	8e 9a       	sbi	0x11, 6	; 17
+	SET_BIT(DDRD,PD7);
+ 220:	8f 9a       	sbi	0x11, 7	; 17
+	SET_BIT(DDRC,PC2);
+ 222:	a2 9a       	sbi	0x14, 2	; 20
+	PORTD=0;	
+ 224:	12 ba       	out	0x12, r1	; 18
+	/*for test*/
+	SET_BIT(DDRA,PA0);
+ 226:	d0 9a       	sbi	0x1a, 0	; 26
+	CLEAR_BIT(PORTA,PA0);
+ 228:	d8 98       	cbi	0x1b, 0	; 27
+	uint8 RecievedFlag=0;
+	
+	InitPeripherals();
+	InitPorts();
+	//EEPROM_Write_Byte(g_FisrtTimeLaunchAddress,0); //for test
+	EEPROM_Read_Byte(g_FisrtTimeLaunchAddress,&g_NewStart);
+ 22a:	80 91 60 00 	lds	r24, 0x0060
+ 22e:	90 91 61 00 	lds	r25, 0x0061
+ 232:	6a e6       	ldi	r22, 0x6A	; 106
+ 234:	70 e0       	ldi	r23, 0x00	; 0
+ 236:	0e 94 83 00 	call	0x106	; 0x106 <EEPROM_Read_Byte>
+	while(UART_recieveByte() != M1_ID){};/*wait for M1 ready*/	
+ 23a:	0e 94 98 02 	call	0x530	; 0x530 <UART_recieveByte>
+ 23e:	81 30       	cpi	r24, 0x01	; 1
+ 240:	e1 f7       	brne	.-8      	; 0x23a <main+0x34>
+	UART_sendByte(g_NewStart);
+ 242:	80 91 6a 00 	lds	r24, 0x006A
+ 246:	0e 94 94 02 	call	0x528	; 0x528 <UART_sendByte>
+	
+		if(g_NewStart != FirstLaunchValue)
+ 24a:	80 91 6a 00 	lds	r24, 0x006A
+ 24e:	89 33       	cpi	r24, 0x39	; 57
+ 250:	b1 f1       	breq	.+108    	; 0x2be <main+0xb8>
+			{
+			while(UART_recieveByte() != M1_ID); //Wait for user input
+ 252:	0e 94 98 02 	call	0x530	; 0x530 <UART_recieveByte>
+ 256:	81 30       	cpi	r24, 0x01	; 1
+ 258:	e1 f7       	brne	.-8      	; 0x252 <main+0x4c>
+ 25a:	0f 2e       	mov	r0, r31
+ 25c:	f5 e6       	ldi	r31, 0x65	; 101
+ 25e:	ef 2e       	mov	r14, r31
+ 260:	f0 e0       	ldi	r31, 0x00	; 0
+ 262:	ff 2e       	mov	r15, r31
+ 264:	f0 2d       	mov	r31, r0
+uint8 g_NewStart;/*Determine weather this is the first time to launch the program*/
+uint16 g_PasswardAddress=0x13f;
+uint16 g_FisrtTimeLaunchAddress=0x3ff;
+uint8 g_Password[5];
+
+int main(void)
+ 266:	87 01       	movw	r16, r14
+ 268:	0b 5f       	subi	r16, 0xFB	; 251
+ 26a:	1f 4f       	sbci	r17, 0xFF	; 255
+ 26c:	67 01       	movw	r12, r14
+	
+		if(g_NewStart != FirstLaunchValue)
+			{
+			while(UART_recieveByte() != M1_ID); //Wait for user input
+					for(uint8 index=0; index<5;index++)
+							g_Password[index]=UART_recieveByte();
+ 26e:	0e 94 98 02 	call	0x530	; 0x530 <UART_recieveByte>
+ 272:	f6 01       	movw	r30, r12
+ 274:	81 93       	st	Z+, r24
+ 276:	6f 01       	movw	r12, r30
+	UART_sendByte(g_NewStart);
+	
+		if(g_NewStart != FirstLaunchValue)
+			{
+			while(UART_recieveByte() != M1_ID); //Wait for user input
+					for(uint8 index=0; index<5;index++)
+ 278:	e0 17       	cp	r30, r16
+ 27a:	f1 07       	cpc	r31, r17
+ 27c:	c1 f7       	brne	.-16     	; 0x26e <main+0x68>
+ 27e:	00 e0       	ldi	r16, 0x00	; 0
+ 280:	10 e0       	ldi	r17, 0x00	; 0
+							g_Password[index]=UART_recieveByte();
+				
+					for(uint8 index=0; index<5;index++){
+							EEPROM_Write_Byte(g_PasswardAddress+index,g_Password[index]);
+ 282:	f7 01       	movw	r30, r14
+ 284:	61 91       	ld	r22, Z+
+ 286:	7f 01       	movw	r14, r30
+ 288:	80 91 62 00 	lds	r24, 0x0062
+ 28c:	90 91 63 00 	lds	r25, 0x0063
+ 290:	80 0f       	add	r24, r16
+ 292:	91 1f       	adc	r25, r17
+ 294:	0e 94 4c 00 	call	0x98	; 0x98 <EEPROM_Write_Byte>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 298:	8f e1       	ldi	r24, 0x1F	; 31
+ 29a:	9e e4       	ldi	r25, 0x4E	; 78
+ 29c:	01 97       	sbiw	r24, 0x01	; 1
+ 29e:	f1 f7       	brne	.-4      	; 0x29c <main+0x96>
+ 2a0:	00 c0       	rjmp	.+0      	; 0x2a2 <main+0x9c>
+ 2a2:	00 00       	nop
+ 2a4:	0f 5f       	subi	r16, 0xFF	; 255
+ 2a6:	1f 4f       	sbci	r17, 0xFF	; 255
+			{
+			while(UART_recieveByte() != M1_ID); //Wait for user input
+					for(uint8 index=0; index<5;index++)
+							g_Password[index]=UART_recieveByte();
+				
+					for(uint8 index=0; index<5;index++){
+ 2a8:	05 30       	cpi	r16, 0x05	; 5
+ 2aa:	11 05       	cpc	r17, r1
+ 2ac:	51 f7       	brne	.-44     	; 0x282 <main+0x7c>
+							EEPROM_Write_Byte(g_PasswardAddress+index,g_Password[index]);
+							_delay_ms(10);
+							}
+			EEPROM_Write_Byte(g_FisrtTimeLaunchAddress,FirstLaunchValue);/*Write Launch Value inside EEPROM*/													
+ 2ae:	80 91 60 00 	lds	r24, 0x0060
+ 2b2:	90 91 61 00 	lds	r25, 0x0061
+ 2b6:	69 e3       	ldi	r22, 0x39	; 57
+ 2b8:	0e 94 4c 00 	call	0x98	; 0x98 <EEPROM_Write_Byte>
+ 2bc:	12 c0       	rjmp	.+36     	; 0x2e2 <main+0xdc>
+	//EEPROM_Write_Byte(g_FisrtTimeLaunchAddress,0); //for test
+	EEPROM_Read_Byte(g_FisrtTimeLaunchAddress,&g_NewStart);
+	while(UART_recieveByte() != M1_ID){};/*wait for M1 ready*/	
+	UART_sendByte(g_NewStart);
+	
+		if(g_NewStart != FirstLaunchValue)
+ 2be:	00 e0       	ldi	r16, 0x00	; 0
+ 2c0:	10 e0       	ldi	r17, 0x00	; 0
+							}
+			EEPROM_Write_Byte(g_FisrtTimeLaunchAddress,FirstLaunchValue);/*Write Launch Value inside EEPROM*/													
+			}else
+			{
+				for(LoopingIndex=0; LoopingIndex<5;LoopingIndex++)
+					EEPROM_Read_Byte(g_PasswardAddress+LoopingIndex,&g_Password[LoopingIndex]);
+ 2c2:	80 91 62 00 	lds	r24, 0x0062
+ 2c6:	90 91 63 00 	lds	r25, 0x0063
+ 2ca:	b8 01       	movw	r22, r16
+ 2cc:	6b 59       	subi	r22, 0x9B	; 155
+ 2ce:	7f 4f       	sbci	r23, 0xFF	; 255
+ 2d0:	80 0f       	add	r24, r16
+ 2d2:	91 1f       	adc	r25, r17
+ 2d4:	0e 94 83 00 	call	0x106	; 0x106 <EEPROM_Read_Byte>
+ 2d8:	0f 5f       	subi	r16, 0xFF	; 255
+ 2da:	1f 4f       	sbci	r17, 0xFF	; 255
+							_delay_ms(10);
+							}
+			EEPROM_Write_Byte(g_FisrtTimeLaunchAddress,FirstLaunchValue);/*Write Launch Value inside EEPROM*/													
+			}else
+			{
+				for(LoopingIndex=0; LoopingIndex<5;LoopingIndex++)
+ 2dc:	05 30       	cpi	r16, 0x05	; 5
+ 2de:	11 05       	cpc	r17, r1
+ 2e0:	81 f7       	brne	.-32     	; 0x2c2 <main+0xbc>
+uint8 g_NewStart;/*Determine weather this is the first time to launch the program*/
+uint16 g_PasswardAddress=0x13f;
+uint16 g_FisrtTimeLaunchAddress=0x3ff;
+uint8 g_Password[5];
+
+int main(void)
+ 2e2:	0f 2e       	mov	r0, r31
+ 2e4:	f6 e0       	ldi	r31, 0x06	; 6
+ 2e6:	cf 2e       	mov	r12, r31
+ 2e8:	dd 24       	eor	r13, r13
+ 2ea:	f0 2d       	mov	r31, r0
+ 2ec:	cc 0e       	add	r12, r28
+ 2ee:	dd 1e       	adc	r13, r29
+			UART_sendByte(EndOfOperation);/*I receive you*/
+			for(LoopingIndex=0; LoopingIndex<5;LoopingIndex++)
+						TempArr[LoopingIndex]=UART_recieveByte();
+			for(LoopingIndex=0;LoopingIndex<5;LoopingIndex++)
+			{
+				if(TempArr[LoopingIndex] != g_Password[LoopingIndex]) break;
+ 2f0:	0f 2e       	mov	r0, r31
+ 2f2:	f5 e6       	ldi	r31, 0x65	; 101
+ 2f4:	6f 2e       	mov	r6, r31
+ 2f6:	f0 e0       	ldi	r31, 0x00	; 0
+ 2f8:	7f 2e       	mov	r7, r31
+ 2fa:	f0 2d       	mov	r31, r0
+ 2fc:	0f 2e       	mov	r0, r31
+ 2fe:	f6 e6       	ldi	r31, 0x66	; 102
+ 300:	4f 2e       	mov	r4, r31
+ 302:	f0 e0       	ldi	r31, 0x00	; 0
+ 304:	5f 2e       	mov	r5, r31
+ 306:	f0 2d       	mov	r31, r0
+		{
+			
+			UART_sendByte(EndOfOperation);/*I receive you*/
+			for(LoopingIndex=0; LoopingIndex<5;LoopingIndex++)
+						TempArr[LoopingIndex]=UART_recieveByte();
+			for(LoopingIndex=0;LoopingIndex<5;LoopingIndex++)
+ 308:	bb 24       	eor	r11, r11
+ 30a:	b3 94       	inc	r11
+uint8 g_NewStart;/*Determine weather this is the first time to launch the program*/
+uint16 g_PasswardAddress=0x13f;
+uint16 g_FisrtTimeLaunchAddress=0x3ff;
+uint8 g_Password[5];
+
+int main(void)
+ 30c:	0f 2e       	mov	r0, r31
+ 30e:	f5 e0       	ldi	r31, 0x05	; 5
+ 310:	8f 2e       	mov	r8, r31
+ 312:	99 24       	eor	r9, r9
+ 314:	f0 2d       	mov	r31, r0
+ 316:	86 0c       	add	r8, r6
+ 318:	97 1c       	adc	r9, r7
+ 31a:	a6 2c       	mov	r10, r6
+ 31c:	37 2c       	mov	r3, r7
+					EEPROM_Read_Byte(g_PasswardAddress+LoopingIndex,&g_Password[LoopingIndex]);
+			}
+	
+    while(1)
+    {
+		RecievedFlag=UART_recieveByte();
+ 31e:	0e 94 98 02 	call	0x530	; 0x530 <UART_recieveByte>
+		
+		if(RecievedFlag == GetPassword)
+ 322:	84 31       	cpi	r24, 0x14	; 20
+ 324:	69 f5       	brne	.+90     	; 0x380 <main+0x17a>
+		{
+			UART_sendByte(EndOfOperation);/*I receive you*/
+ 326:	87 e7       	ldi	r24, 0x77	; 119
+ 328:	0e 94 94 02 	call	0x528	; 0x528 <UART_sendByte>
+ 32c:	8e 01       	movw	r16, r28
+ 32e:	0f 5f       	subi	r16, 0xFF	; 255
+ 330:	1f 4f       	sbci	r17, 0xFF	; 255
+			for(LoopingIndex=0; LoopingIndex<5;LoopingIndex++)
+					TempArr[LoopingIndex]=UART_recieveByte();
+ 332:	0e 94 98 02 	call	0x530	; 0x530 <UART_recieveByte>
+ 336:	f8 01       	movw	r30, r16
+ 338:	81 93       	st	Z+, r24
+ 33a:	8f 01       	movw	r16, r30
+		RecievedFlag=UART_recieveByte();
+		
+		if(RecievedFlag == GetPassword)
+		{
+			UART_sendByte(EndOfOperation);/*I receive you*/
+			for(LoopingIndex=0; LoopingIndex<5;LoopingIndex++)
+ 33c:	ec 15       	cp	r30, r12
+ 33e:	fd 05       	cpc	r31, r13
+ 340:	c1 f7       	brne	.-16     	; 0x332 <main+0x12c>
+					TempArr[LoopingIndex]=UART_recieveByte();
+			for(LoopingIndex=0;LoopingIndex<5;LoopingIndex++)
+			{
+					if(TempArr[LoopingIndex] != g_Password[LoopingIndex]) break;
+ 342:	99 81       	ldd	r25, Y+1	; 0x01
+ 344:	f3 01       	movw	r30, r6
+ 346:	80 81       	ld	r24, Z
+ 348:	98 17       	cp	r25, r24
+ 34a:	09 f0       	breq	.+2      	; 0x34e <main+0x148>
+ 34c:	9f c0       	rjmp	.+318    	; 0x48c <main+0x286>
+ 34e:	fe 01       	movw	r30, r28
+ 350:	32 96       	adiw	r30, 0x02	; 2
+ 352:	d2 01       	movw	r26, r4
+		if(RecievedFlag == GetPassword)
+		{
+			UART_sendByte(EndOfOperation);/*I receive you*/
+			for(LoopingIndex=0; LoopingIndex<5;LoopingIndex++)
+					TempArr[LoopingIndex]=UART_recieveByte();
+			for(LoopingIndex=0;LoopingIndex<5;LoopingIndex++)
+ 354:	1b 2d       	mov	r17, r11
+			{
+					if(TempArr[LoopingIndex] != g_Password[LoopingIndex]) break;
+ 356:	91 91       	ld	r25, Z+
+ 358:	8d 91       	ld	r24, X+
+ 35a:	98 17       	cp	r25, r24
+ 35c:	21 f4       	brne	.+8      	; 0x366 <main+0x160>
+		if(RecievedFlag == GetPassword)
+		{
+			UART_sendByte(EndOfOperation);/*I receive you*/
+			for(LoopingIndex=0; LoopingIndex<5;LoopingIndex++)
+					TempArr[LoopingIndex]=UART_recieveByte();
+			for(LoopingIndex=0;LoopingIndex<5;LoopingIndex++)
+ 35e:	1f 5f       	subi	r17, 0xFF	; 255
+ 360:	15 30       	cpi	r17, 0x05	; 5
+ 362:	c9 f7       	brne	.-14     	; 0x356 <main+0x150>
+ 364:	9b c0       	rjmp	.+310    	; 0x49c <main+0x296>
+			{
+					if(TempArr[LoopingIndex] != g_Password[LoopingIndex]) break;
+			}
+						
+			UART_sendByte(EndOfOperation);
+ 366:	87 e7       	ldi	r24, 0x77	; 119
+ 368:	0e 94 94 02 	call	0x528	; 0x528 <UART_sendByte>
+			if(LoopingIndex!=5) UART_sendByte(Mismatch);
+ 36c:	15 30       	cpi	r17, 0x05	; 5
+ 36e:	21 f0       	breq	.+8      	; 0x378 <main+0x172>
+ 370:	88 e1       	ldi	r24, 0x18	; 24
+ 372:	0e 94 94 02 	call	0x528	; 0x528 <UART_sendByte>
+ 376:	d3 cf       	rjmp	.-90     	; 0x31e <main+0x118>
+			else UART_sendByte(EndOfOperation);			
+ 378:	87 e7       	ldi	r24, 0x77	; 119
+ 37a:	0e 94 94 02 	call	0x528	; 0x528 <UART_sendByte>
+ 37e:	cf cf       	rjmp	.-98     	; 0x31e <main+0x118>
+
+		}
+		
+		else if(RecievedFlag == SuccessAccess)
+ 380:	85 32       	cpi	r24, 0x25	; 37
+ 382:	b9 f4       	brne	.+46     	; 0x3b2 <main+0x1ac>
+		{
+			/*Motor clockwise 10sec->displaying door is unlock
+			motor anti clock wise 10 sec-> displaying door is lock*/
+			SET_BIT(PORTD,PD7);
+ 384:	97 9a       	sbi	0x12, 7	; 18
+			CLEAR_BIT(PORTD,PD6);
+ 386:	96 98       	cbi	0x12, 6	; 18
+			SET_BIT(PORTD,PD5);
+ 388:	95 9a       	sbi	0x12, 5	; 18
+			UART_sendByte(DoorUnlock);
+ 38a:	88 e9       	ldi	r24, 0x98	; 152
+ 38c:	0e 94 94 02 	call	0x528	; 0x528 <UART_sendByte>
+			 TimerDelayInSecond(10);
+ 390:	8a e0       	ldi	r24, 0x0A	; 10
+ 392:	0e 94 7e 02 	call	0x4fc	; 0x4fc <TimerDelayInSecond>
+			 CLEAR_BIT(PORTD,PD5);
+ 396:	95 98       	cbi	0x12, 5	; 18
+			 SET_BIT(PORTD,PD6);
+ 398:	96 9a       	sbi	0x12, 6	; 18
+			 UART_sendByte(DoorLock);
+ 39a:	80 e4       	ldi	r24, 0x40	; 64
+ 39c:	0e 94 94 02 	call	0x528	; 0x528 <UART_sendByte>
+			 TimerDelayInSecond(10);
+ 3a0:	8a e0       	ldi	r24, 0x0A	; 10
+ 3a2:	0e 94 7e 02 	call	0x4fc	; 0x4fc <TimerDelayInSecond>
+				CLEAR_BIT(PORTD,PD5);
+ 3a6:	95 98       	cbi	0x12, 5	; 18
+				CLEAR_BIT(PORTD,PD6);
+ 3a8:	96 98       	cbi	0x12, 6	; 18
+			UART_sendByte(EndOfOperation);
+ 3aa:	87 e7       	ldi	r24, 0x77	; 119
+ 3ac:	0e 94 94 02 	call	0x528	; 0x528 <UART_sendByte>
+ 3b0:	b6 cf       	rjmp	.-148    	; 0x31e <main+0x118>
+		}
+		
+		else if(RecievedFlag == FailureAccess){
+ 3b2:	88 38       	cpi	r24, 0x88	; 136
+ 3b4:	69 f4       	brne	.+26     	; 0x3d0 <main+0x1ca>
+				/*Turn on Buzzer*/
+				SET_BIT(PORTC,PC2);
+ 3b6:	aa 9a       	sbi	0x15, 2	; 21
+				TimerDelayInSecond(1);
+ 3b8:	8b 2d       	mov	r24, r11
+ 3ba:	0e 94 7e 02 	call	0x4fc	; 0x4fc <TimerDelayInSecond>
+				CLEAR_BIT(PORTC,PC2);
+ 3be:	aa 98       	cbi	0x15, 2	; 21
+				TimerDelayInSecond(59);/*JUST FOR TEST BUT CHANGE IT TO 60s*/
+ 3c0:	8b e3       	ldi	r24, 0x3B	; 59
+ 3c2:	0e 94 7e 02 	call	0x4fc	; 0x4fc <TimerDelayInSecond>
+				SET_BIT(PORTC,PC2);
+ 3c6:	aa 9a       	sbi	0x15, 2	; 21
+				UART_sendByte(EndOfOperation);
+ 3c8:	87 e7       	ldi	r24, 0x77	; 119
+ 3ca:	0e 94 94 02 	call	0x528	; 0x528 <UART_sendByte>
+ 3ce:	a7 cf       	rjmp	.-178    	; 0x31e <main+0x118>
+		}
+		
+		else if(RecievedFlag == NewPass)
+ 3d0:	81 34       	cpi	r24, 0x41	; 65
+ 3d2:	09 f0       	breq	.+2      	; 0x3d6 <main+0x1d0>
+ 3d4:	a4 cf       	rjmp	.-184    	; 0x31e <main+0x118>
+		{
+			
+			UART_sendByte(EndOfOperation);/*I receive you*/
+ 3d6:	87 e7       	ldi	r24, 0x77	; 119
+ 3d8:	0e 94 94 02 	call	0x528	; 0x528 <UART_sendByte>
+ 3dc:	8e 01       	movw	r16, r28
+ 3de:	0f 5f       	subi	r16, 0xFF	; 255
+ 3e0:	1f 4f       	sbci	r17, 0xFF	; 255
+			for(LoopingIndex=0; LoopingIndex<5;LoopingIndex++)
+						TempArr[LoopingIndex]=UART_recieveByte();
+ 3e2:	0e 94 98 02 	call	0x530	; 0x530 <UART_recieveByte>
+ 3e6:	f8 01       	movw	r30, r16
+ 3e8:	81 93       	st	Z+, r24
+ 3ea:	8f 01       	movw	r16, r30
+		
+		else if(RecievedFlag == NewPass)
+		{
+			
+			UART_sendByte(EndOfOperation);/*I receive you*/
+			for(LoopingIndex=0; LoopingIndex<5;LoopingIndex++)
+ 3ec:	ec 15       	cp	r30, r12
+ 3ee:	fd 05       	cpc	r31, r13
+ 3f0:	c1 f7       	brne	.-16     	; 0x3e2 <main+0x1dc>
+						TempArr[LoopingIndex]=UART_recieveByte();
+			for(LoopingIndex=0;LoopingIndex<5;LoopingIndex++)
+			{
+				if(TempArr[LoopingIndex] != g_Password[LoopingIndex]) break;
+ 3f2:	99 81       	ldd	r25, Y+1	; 0x01
+ 3f4:	f3 01       	movw	r30, r6
+ 3f6:	80 81       	ld	r24, Z
+ 3f8:	98 17       	cp	r25, r24
+ 3fa:	09 f0       	breq	.+2      	; 0x3fe <main+0x1f8>
+ 3fc:	4b c0       	rjmp	.+150    	; 0x494 <main+0x28e>
+ 3fe:	fe 01       	movw	r30, r28
+ 400:	32 96       	adiw	r30, 0x02	; 2
+ 402:	d2 01       	movw	r26, r4
+		{
+			
+			UART_sendByte(EndOfOperation);/*I receive you*/
+			for(LoopingIndex=0; LoopingIndex<5;LoopingIndex++)
+						TempArr[LoopingIndex]=UART_recieveByte();
+			for(LoopingIndex=0;LoopingIndex<5;LoopingIndex++)
+ 404:	1b 2d       	mov	r17, r11
+			{
+				if(TempArr[LoopingIndex] != g_Password[LoopingIndex]) break;
+ 406:	91 91       	ld	r25, Z+
+ 408:	8d 91       	ld	r24, X+
+ 40a:	98 17       	cp	r25, r24
+ 40c:	21 f4       	brne	.+8      	; 0x416 <main+0x210>
+		{
+			
+			UART_sendByte(EndOfOperation);/*I receive you*/
+			for(LoopingIndex=0; LoopingIndex<5;LoopingIndex++)
+						TempArr[LoopingIndex]=UART_recieveByte();
+			for(LoopingIndex=0;LoopingIndex<5;LoopingIndex++)
+ 40e:	1f 5f       	subi	r17, 0xFF	; 255
+ 410:	15 30       	cpi	r17, 0x05	; 5
+ 412:	c9 f7       	brne	.-14     	; 0x406 <main+0x200>
+ 414:	47 c0       	rjmp	.+142    	; 0x4a4 <main+0x29e>
+			{
+				if(TempArr[LoopingIndex] != g_Password[LoopingIndex]) break;
+			}
+			
+			UART_sendByte(EndOfOperation);/*End Of The Comparsion*/
+ 416:	87 e7       	ldi	r24, 0x77	; 119
+ 418:	0e 94 94 02 	call	0x528	; 0x528 <UART_sendByte>
+			if(LoopingIndex!=5) UART_sendByte(Mismatch);
+ 41c:	15 30       	cpi	r17, 0x05	; 5
+ 41e:	21 f0       	breq	.+8      	; 0x428 <main+0x222>
+ 420:	88 e1       	ldi	r24, 0x18	; 24
+ 422:	0e 94 94 02 	call	0x528	; 0x528 <UART_sendByte>
+ 426:	7b cf       	rjmp	.-266    	; 0x31e <main+0x118>
+			else {
+				/*Successfully match*/
+				UART_sendByte(EndOfOperation);
+ 428:	87 e7       	ldi	r24, 0x77	; 119
+ 42a:	0e 94 94 02 	call	0x528	; 0x528 <UART_sendByte>
+				while(UART_recieveByte() != M1_ID){};/*wait to be ready to send*/
+ 42e:	0e 94 98 02 	call	0x530	; 0x530 <UART_recieveByte>
+ 432:	81 30       	cpi	r24, 0x01	; 1
+ 434:	e1 f7       	brne	.-8      	; 0x42e <main+0x228>
+ 436:	73 01       	movw	r14, r6
+uint8 g_NewStart;/*Determine weather this is the first time to launch the program*/
+uint16 g_PasswardAddress=0x13f;
+uint16 g_FisrtTimeLaunchAddress=0x3ff;
+uint8 g_Password[5];
+
+int main(void)
+ 438:	0a 2d       	mov	r16, r10
+ 43a:	13 2d       	mov	r17, r3
+				/*Successfully match*/
+				UART_sendByte(EndOfOperation);
+				while(UART_recieveByte() != M1_ID){};/*wait to be ready to send*/
+					
+				for(uint8 index=0; index<5;index++)
+					  g_Password[index]=UART_recieveByte();
+ 43c:	0e 94 98 02 	call	0x530	; 0x530 <UART_recieveByte>
+ 440:	f8 01       	movw	r30, r16
+ 442:	81 93       	st	Z+, r24
+ 444:	8f 01       	movw	r16, r30
+			else {
+				/*Successfully match*/
+				UART_sendByte(EndOfOperation);
+				while(UART_recieveByte() != M1_ID){};/*wait to be ready to send*/
+					
+				for(uint8 index=0; index<5;index++)
+ 446:	e8 15       	cp	r30, r8
+ 448:	f9 05       	cpc	r31, r9
+ 44a:	c1 f7       	brne	.-16     	; 0x43c <main+0x236>
+ 44c:	00 e0       	ldi	r16, 0x00	; 0
+ 44e:	10 e0       	ldi	r17, 0x00	; 0
+					  g_Password[index]=UART_recieveByte();
+					
+			    for(uint8 index=0; index<5;index++){
+						EEPROM_Write_Byte(g_PasswardAddress+index,g_Password[index]);
+ 450:	f7 01       	movw	r30, r14
+ 452:	61 91       	ld	r22, Z+
+ 454:	7f 01       	movw	r14, r30
+ 456:	80 91 62 00 	lds	r24, 0x0062
+ 45a:	90 91 63 00 	lds	r25, 0x0063
+ 45e:	80 0f       	add	r24, r16
+ 460:	91 1f       	adc	r25, r17
+ 462:	0e 94 4c 00 	call	0x98	; 0x98 <EEPROM_Write_Byte>
+ 466:	8f e1       	ldi	r24, 0x1F	; 31
+ 468:	9e e4       	ldi	r25, 0x4E	; 78
+ 46a:	01 97       	sbiw	r24, 0x01	; 1
+ 46c:	f1 f7       	brne	.-4      	; 0x46a <main+0x264>
+ 46e:	00 c0       	rjmp	.+0      	; 0x470 <main+0x26a>
+ 470:	00 00       	nop
+ 472:	0f 5f       	subi	r16, 0xFF	; 255
+ 474:	1f 4f       	sbci	r17, 0xFF	; 255
+				while(UART_recieveByte() != M1_ID){};/*wait to be ready to send*/
+					
+				for(uint8 index=0; index<5;index++)
+					  g_Password[index]=UART_recieveByte();
+					
+			    for(uint8 index=0; index<5;index++){
+ 476:	05 30       	cpi	r16, 0x05	; 5
+ 478:	11 05       	cpc	r17, r1
+ 47a:	51 f7       	brne	.-44     	; 0x450 <main+0x24a>
+						EEPROM_Write_Byte(g_PasswardAddress+index,g_Password[index]);
+						_delay_ms(10);
+					}
+			   EEPROM_Write_Byte(g_FisrtTimeLaunchAddress,FirstLaunchValue);/*Write Launch Value inside EEPROM*/
+ 47c:	80 91 60 00 	lds	r24, 0x0060
+ 480:	90 91 61 00 	lds	r25, 0x0061
+ 484:	69 e3       	ldi	r22, 0x39	; 57
+ 486:	0e 94 4c 00 	call	0x98	; 0x98 <EEPROM_Write_Byte>
+ 48a:	49 cf       	rjmp	.-366    	; 0x31e <main+0x118>
+			for(LoopingIndex=0;LoopingIndex<5;LoopingIndex++)
+			{
+					if(TempArr[LoopingIndex] != g_Password[LoopingIndex]) break;
+			}
+						
+			UART_sendByte(EndOfOperation);
+ 48c:	87 e7       	ldi	r24, 0x77	; 119
+ 48e:	0e 94 94 02 	call	0x528	; 0x528 <UART_sendByte>
+ 492:	6e cf       	rjmp	.-292    	; 0x370 <main+0x16a>
+			for(LoopingIndex=0;LoopingIndex<5;LoopingIndex++)
+			{
+				if(TempArr[LoopingIndex] != g_Password[LoopingIndex]) break;
+			}
+			
+			UART_sendByte(EndOfOperation);/*End Of The Comparsion*/
+ 494:	87 e7       	ldi	r24, 0x77	; 119
+ 496:	0e 94 94 02 	call	0x528	; 0x528 <UART_sendByte>
+ 49a:	c2 cf       	rjmp	.-124    	; 0x420 <main+0x21a>
+			for(LoopingIndex=0;LoopingIndex<5;LoopingIndex++)
+			{
+					if(TempArr[LoopingIndex] != g_Password[LoopingIndex]) break;
+			}
+						
+			UART_sendByte(EndOfOperation);
+ 49c:	87 e7       	ldi	r24, 0x77	; 119
+ 49e:	0e 94 94 02 	call	0x528	; 0x528 <UART_sendByte>
+ 4a2:	6a cf       	rjmp	.-300    	; 0x378 <main+0x172>
+			for(LoopingIndex=0;LoopingIndex<5;LoopingIndex++)
+			{
+				if(TempArr[LoopingIndex] != g_Password[LoopingIndex]) break;
+			}
+			
+			UART_sendByte(EndOfOperation);/*End Of The Comparsion*/
+ 4a4:	87 e7       	ldi	r24, 0x77	; 119
+ 4a6:	0e 94 94 02 	call	0x528	; 0x528 <UART_sendByte>
+ 4aa:	be cf       	rjmp	.-132    	; 0x428 <main+0x222>
+
+000004ac <__vector_7>:
+#include "timer.h"
+
+volatile uint8 g_NumverOfSecond=0;
+
+ISR(TIMER1_COMPA_vect)
+{
+ 4ac:	1f 92       	push	r1
+ 4ae:	0f 92       	push	r0
+ 4b0:	0f b6       	in	r0, 0x3f	; 63
+ 4b2:	0f 92       	push	r0
+ 4b4:	11 24       	eor	r1, r1
+ 4b6:	8f 93       	push	r24
+
+	g_NumverOfSecond++;
+ 4b8:	80 91 64 00 	lds	r24, 0x0064
+ 4bc:	8f 5f       	subi	r24, 0xFF	; 255
+ 4be:	80 93 64 00 	sts	0x0064, r24
+}
+ 4c2:	8f 91       	pop	r24
+ 4c4:	0f 90       	pop	r0
+ 4c6:	0f be       	out	0x3f, r0	; 63
+ 4c8:	0f 90       	pop	r0
+ 4ca:	1f 90       	pop	r1
+ 4cc:	18 95       	reti
+
+000004ce <Timer1_CTCModeInit>:
+
+void Timer1_CTCModeInit(void)
+{
+	sei();
+ 4ce:	78 94       	sei
+	TCNT1=0;
+ 4d0:	1d bc       	out	0x2d, r1	; 45
+ 4d2:	1c bc       	out	0x2c, r1	; 44
+	TCCR1A|=(1<<FOC1A);
+ 4d4:	8f b5       	in	r24, 0x2f	; 47
+ 4d6:	88 60       	ori	r24, 0x08	; 8
+ 4d8:	8f bd       	out	0x2f, r24	; 47
+	TCCR1B|=(1<<WGM12)|(1<<CS12)|(1<<CS10);
+ 4da:	8e b5       	in	r24, 0x2e	; 46
+ 4dc:	8d 60       	ori	r24, 0x0D	; 13
+ 4de:	8e bd       	out	0x2e, r24	; 46
+	TIMSK=(1<<OCIE1A);
+ 4e0:	80 e1       	ldi	r24, 0x10	; 16
+ 4e2:	89 bf       	out	0x39, r24	; 57
+	OCR1A=0x1E83;	
+ 4e4:	83 e8       	ldi	r24, 0x83	; 131
+ 4e6:	9e e1       	ldi	r25, 0x1E	; 30
+ 4e8:	9b bd       	out	0x2b, r25	; 43
+ 4ea:	8a bd       	out	0x2a, r24	; 42
+	g_NumverOfSecond=0;
+ 4ec:	10 92 64 00 	sts	0x0064, r1
+	/*It overflowS every one second ,so i take this chance in counting*/
+	/* Resolution for one tick = (1024/8*10^6)
+	 total time for making one overflow = MaxCounterRegIset * Resolution
+	 let this total time =1 second
+	 then MaxCounterRegIset = 1 second / Resolution = 7812.5 =0x1E83 In OCR1A */
+}
+ 4f0:	08 95       	ret
+
+000004f2 <Timer1_CTCModeDisable>:
+
+void Timer1_CTCModeDisable(void)
+{
+	CLEAR_BIT(TIMSK,OCIE1A);
+ 4f2:	89 b7       	in	r24, 0x39	; 57
+ 4f4:	8f 7e       	andi	r24, 0xEF	; 239
+ 4f6:	89 bf       	out	0x39, r24	; 57
+	cli();
+ 4f8:	f8 94       	cli
+}
+ 4fa:	08 95       	ret
+
+000004fc <TimerDelayInSecond>:
+
+
+void TimerDelayInSecond(uint8 value)
+{
+ 4fc:	cf 93       	push	r28
+ 4fe:	c8 2f       	mov	r28, r24
+	Timer1_CTCModeInit();
+ 500:	0e 94 67 02 	call	0x4ce	; 0x4ce <Timer1_CTCModeInit>
+	while(1){
+		
+		if(g_NumverOfSecond >= value)
+ 504:	80 91 64 00 	lds	r24, 0x0064
+ 508:	8c 17       	cp	r24, r28
+ 50a:	e0 f3       	brcs	.-8      	; 0x504 <TimerDelayInSecond+0x8>
+				break;	
+	}
+  Timer1_CTCModeDisable();
+ 50c:	0e 94 79 02 	call	0x4f2	; 0x4f2 <Timer1_CTCModeDisable>
+}
+ 510:	cf 91       	pop	r28
+ 512:	08 95       	ret
+
+00000514 <UART_init>:
+	 #define stopBits (1<<USBS)
+ #endif
+ 
+void UART_init(void)
+{
+	UCSRA = (UART_TRANSIMMISION_SPEED<<U2X)|(Multi_processor_communication_mode<<MPCM);
+ 514:	82 e0       	ldi	r24, 0x02	; 2
+ 516:	8b b9       	out	0x0b, r24	; 11
+	
+	UCSRB = (Transmitter_Enable<<RXEN) | (Receiver_Enable<<TXEN);
+ 518:	88 e1       	ldi	r24, 0x18	; 24
+ 51a:	8a b9       	out	0x0a, r24	; 10
+#ifdef UART_INTERRUPT
+	UCSRB = (RX_COMPLETE_INT<<RXCIE)|(TX_COMPLETE_INT<<TXCIE)|(UDR_EMPTY_INT<<UDRIE);
+#endif
+UCSRC = (1<<URSEL) | (SET_Communication_Bits)|(Asynchronous_Operation<<UMSEL)|(PA_MODE)|(stopBits);
+ 51c:	86 e8       	ldi	r24, 0x86	; 134
+ 51e:	80 bd       	out	0x20, r24	; 32
+	  
+	UBRRH = 0; /*To set URSEL to 0 also to be able to write on that register*/
+ 520:	10 bc       	out	0x20, r1	; 32
+	UBRRL = UBBR_Value;
+ 522:	87 e6       	ldi	r24, 0x67	; 103
+ 524:	89 b9       	out	0x09, r24	; 9
+}
+ 526:	08 95       	ret
+
+00000528 <UART_sendByte>:
+	
+void UART_sendByte(const uint8 data)
+{
+	/* UDRE flag is set when the Tx buffer (UDR) is empty and ready for 
+	 * transmitting a new byte so wait until this flag is set to one */
+	while(BIT_IS_CLEAR(UCSRA,UDRE)){}
+ 528:	5d 9b       	sbis	0x0b, 5	; 11
+ 52a:	fe cf       	rjmp	.-4      	; 0x528 <UART_sendByte>
+	/* Put the required data in the UDR register and it also clear the UDRE flag as 
+	 * the UDR register is not empty now */	 
+	UDR = data;
+ 52c:	8c b9       	out	0x0c, r24	; 12
+	/************************* Another Method *************************
+	UDR = data;
+	while(BIT_IS_CLEAR(UCSRA,TXC)){} // Wait until the transimission is complete TXC = 1
+	SET_BIT(UCSRA,TXC); // Clear the TXC flag as not ISR is not defined
+	*******************************************************************/	
+}
+ 52e:	08 95       	ret
+
+00000530 <UART_recieveByte>:
+
+uint8 UART_recieveByte(void)
+{
+	/* RXC flag is set when the UART receive data so wait until this 
+	 * flag is set to one */
+	while(BIT_IS_CLEAR(UCSRA,RXC)){}
+ 530:	5f 9b       	sbis	0x0b, 7	; 11
+ 532:	fe cf       	rjmp	.-4      	; 0x530 <UART_recieveByte>
+	/* Read the received data from the Rx buffer (UDR) and the RXC flag 
+	   will be cleared after read this data */	 
+    return UDR;		
+ 534:	8c b1       	in	r24, 0x0c	; 12
+}
+ 536:	08 95       	ret
+
+00000538 <UART_sendString>:
+
+void UART_sendString(const uint8 *Str)
+{
+ 538:	0f 93       	push	r16
+ 53a:	1f 93       	push	r17
+ 53c:	cf 93       	push	r28
+ 53e:	8c 01       	movw	r16, r24
+	uint8 i = 0;
+	while(Str[i] != '\0')
+ 540:	fc 01       	movw	r30, r24
+ 542:	80 81       	ld	r24, Z
+ 544:	88 23       	and	r24, r24
+ 546:	51 f0       	breq	.+20     	; 0x55c <UART_sendString+0x24>
+    return UDR;		
+}
+
+void UART_sendString(const uint8 *Str)
+{
+	uint8 i = 0;
+ 548:	c0 e0       	ldi	r28, 0x00	; 0
+	while(Str[i] != '\0')
+	{
+		UART_sendByte(Str[i]);
+ 54a:	0e 94 94 02 	call	0x528	; 0x528 <UART_sendByte>
+		i++;
+ 54e:	cf 5f       	subi	r28, 0xFF	; 255
+}
+
+void UART_sendString(const uint8 *Str)
+{
+	uint8 i = 0;
+	while(Str[i] != '\0')
+ 550:	f8 01       	movw	r30, r16
+ 552:	ec 0f       	add	r30, r28
+ 554:	f1 1d       	adc	r31, r1
+ 556:	80 81       	ld	r24, Z
+ 558:	88 23       	and	r24, r24
+ 55a:	b9 f7       	brne	.-18     	; 0x54a <UART_sendString+0x12>
+	{
+		UART_sendByte(*Str);
+		Str++;
+	}		
+	*******************************************************************/
+}
+ 55c:	cf 91       	pop	r28
+ 55e:	1f 91       	pop	r17
+ 560:	0f 91       	pop	r16
+ 562:	08 95       	ret
+
+00000564 <UART_receiveString>:
+
+void UART_receiveString(uint8 *Str)
+{
+ 564:	ff 92       	push	r15
+ 566:	0f 93       	push	r16
+ 568:	1f 93       	push	r17
+ 56a:	cf 93       	push	r28
+ 56c:	df 93       	push	r29
+ 56e:	8c 01       	movw	r16, r24
+	uint8 i = 0;
+	Str[i] = UART_recieveByte();
+ 570:	0e 94 98 02 	call	0x530	; 0x530 <UART_recieveByte>
+ 574:	f8 01       	movw	r30, r16
+ 576:	80 83       	st	Z, r24
+	while(Str[i] != '#')
+ 578:	83 32       	cpi	r24, 0x23	; 35
+ 57a:	59 f0       	breq	.+22     	; 0x592 <UART_receiveString+0x2e>
+	*******************************************************************/
+}
+
+void UART_receiveString(uint8 *Str)
+{
+	uint8 i = 0;
+ 57c:	ff 24       	eor	r15, r15
+	Str[i] = UART_recieveByte();
+	while(Str[i] != '#')
+	{
+		i++;
+ 57e:	f3 94       	inc	r15
+		Str[i] = UART_recieveByte();
+ 580:	e8 01       	movw	r28, r16
+ 582:	cf 0d       	add	r28, r15
+ 584:	d1 1d       	adc	r29, r1
+ 586:	0e 94 98 02 	call	0x530	; 0x530 <UART_recieveByte>
+ 58a:	88 83       	st	Y, r24
+
+void UART_receiveString(uint8 *Str)
+{
+	uint8 i = 0;
+	Str[i] = UART_recieveByte();
+	while(Str[i] != '#')
+ 58c:	83 32       	cpi	r24, 0x23	; 35
+ 58e:	b9 f7       	brne	.-18     	; 0x57e <UART_receiveString+0x1a>
+ 590:	01 c0       	rjmp	.+2      	; 0x594 <UART_receiveString+0x30>
+ 592:	e8 01       	movw	r28, r16
+	{
+		i++;
+		Str[i] = UART_recieveByte();
+	}
+	Str[i] = '\0';
+ 594:	18 82       	st	Y, r1
+}
+ 596:	df 91       	pop	r29
+ 598:	cf 91       	pop	r28
+ 59a:	1f 91       	pop	r17
+ 59c:	0f 91       	pop	r16
+ 59e:	ff 90       	pop	r15
+ 5a0:	08 95       	ret
+
+000005a2 <_exit>:
+ 5a2:	f8 94       	cli
+
+000005a4 <__stop_program>:
+ 5a4:	ff cf       	rjmp	.-2      	; 0x5a4 <__stop_program>
